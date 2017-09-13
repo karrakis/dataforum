@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <div class='content'>
+      <div class="top-bar">
+        <div class="top-bar-left">
+          <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Alerts</a></li>
+            <li><a href="#">Sign Up</a></li>
+            <li><a href="#">Log In</a></li>
+          </ul>
+        </div>
+        <div class="top-bar-right">
+          <ul class="menu">
+            <li><input type="search" placeholder="Search"></li>
+            <li><button type="button" class="button">Search</button></li>
+          </ul>
+        </div>
+      </div>
+       
+       
+      <div class="row">
+        <div class="medium-4 columns">
+        <img src="https://placehold.it/450x183&text=KitsuneSays Analytics" alt="company logo">
+      </div>
+      <div class="medium-8 columns">
+        <img src="https://placehold.it/900x175&text=Advertisement Placeholder" alt="Register to Vote today!">
+      </div>
+    </div>
+    <header>
+      <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+        <button class="menu-icon" type="button" data-toggle></button>
+        <div class="title-bar-title">Menu</div>
+      </div>
+      <div class="top-bar" id="main-menu">
+        <ul class="menu vertical medium-horizontal expanded medium-text-center" data-responsive-menu="drilldown medium-dropdown">
+          <li class="has-submenu"><a href="/congress">Congress</a>
+          <ul class="submenu menu vertical" data-submenu>
+          <li><a href="/articles?category=congress&sub_category=recent">Recent Activity</a></li>
+          <li><a href="/articles?category=congress&sub_category=silos">Issue Silos</a></li>
+          <li><a href="/articles?category=congress&sub_category=members">Members of Congress</a></li>
+          </ul>
+          </li>
+          <li class="has-submenu"><a href="#">Commerce</a>
+          <ul class="submenu menu vertical" data-submenu>
+          <li><a href="#">Stocks</a></li>
+          <li><a href="#">Quarterly Reports</a></li>
+          </ul>
+          </li>
+          <li class="has-submenu"><a href="#">Sports</a>
+            <ul class="submenu menu vertical" data-submenu>
+              <li><a href="#">Football</a></li>
+              <li><a href="#">Soccer</a></li>
+              <li><a href="#">Baseball</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu"><a href="#">Science</a>
+            <ul class="submenu menu vertical" data-submenu>
+              <li><a href="#">Technology</a></li>
+              <li><a href="#">Physics</a></li>
+              <li><a href="#">Biology</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu"><a href="#">Real Estate</a>
+            <ul class="submenu menu vertical" data-submenu>
+              <li><a href="#">Recent Sales</a></li>
+              <li><a href="#">Statistics</a></li>
+              <li><a href="#">On Market</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu"><a href="#">Crime</a>
+            <ul class="submenu menu vertical" data-submenu>
+              <li><a href="#">Trends</a></li>
+              <li><a href="#">Blotters</a></li>
+              <li><a href="#">Press</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <br>
+  <%= yield %>
+  </div>
+  </body>
+</html>

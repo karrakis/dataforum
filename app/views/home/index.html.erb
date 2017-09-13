@@ -1,40 +1,117 @@
-<canvas id="myChart" width="400" height="400"></canvas>
-<script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
+
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KitsuneSays</title>
+ 
+</head>
+<body>
+
+<div class="row padded medium-unstack" data-equalizer>
+	<div class="medium-8 columns" data-equalizer-watch>
+		<a href="/articles/<%= @article_900_450['cuid']%>" class='row callout secondary' data-equalizer-watch>
+			<div class='medium-4 columns'>
+				<%= image_tag @article_900_450['image_filename'] %>
+			</div>
+			<div class='medium-8 columns'>
+				<%= @article_900_450['long_display'].html_safe %>
+			</div>
+		</a>
+	</div>
+  <% #<p><img src="https://placehold.it/900x450&text=Promoted Article" alt="main article image"></p> %>
+
+	<div class="medium-4 columns" data-equalizer-watch>
+		<a href="/articles/<%= @articles_400_200[0]['cuid']%>" class='row callout secondary align-self-top'>
+			<div class='small-6 medium-5 columns'>
+				<%= image_tag @articles_400_200[0]['image_filename'] %>
+			</div>
+			<div class='small-6 medium-7 columns'>
+				<%= @articles_400_200[0]['medium_display'].html_safe %>
+			</div>
+		</a>
+		<a href="/articles/<%= @articles_400_200[1]['cuid']%>" class='row callout secondary align-self-bottom'>
+			<div class='small-6 medium-5 columns'>
+				<%= image_tag @articles_400_200[1]['image_filename'] %>
+			</div>
+			<div class='small-6 medium-7 columns'>
+				<%= @articles_400_200[1]['medium_display'].html_safe %>
+			</div>
+		</a>
+	</div>
+		
+		<% #<p><img src="https://placehold.it/400x200&text=Other cool article" alt="article promo image" alt="advertisement for deep fried Twinkies"></p> %>
+		<% #<p><img src="https://placehold.it/400x200&text=Other cool article" alt="article promo image"></p> %>
+</div>
+<hr>
+<div class="row column align-spaced align-middle">
+<h4 style="margin: 0;" class="text-center">Most Recent Five (by bill)</h4>
+</div>
+<hr>
+<div class="row small-up-3 medium-up-4 large-up-5" data-equalizer>
+	<% @articles_uniqued_0_4.each do |art| %>
+	<div class="column border-boxed" data-equalizer-watch>
+		<a href="/articles/<%= art['cuid']%>" class='row callout primary'>
+			<div class='small-8 medium-6 large-4 columns padded'>
+				<%= image_tag art['image_filename'] %>
+			</div>
+			<div class='columns padded'>
+				<%= art['short_display'].html_safe %>
+			</div>
+		</a>
+		<% #<img src="https://placehold.it/400x370&text=Look at me!" alt="image for article"> %>
+	</div>
+	<% end %>
+</div>
+<hr>
+	<div class="row column align-spaced align-middle">
+		<h4 style="margin: 0;" class="text-center">Featured Robot Produce</h4>
+	</div>
+<hr>
+<div class="row">
+	<div class="large-8 columns" style="border-right: 1px solid #E3E5E8;">
+		<div class="row column align-spaced align-middle">
+			<h4 style="margin: 0;" class="text-center">Articles</h4>
+		</div>
+		<hr>
+		<article>
+			<% @articles_downwind.each do |art| %>
+				<div class="column border-boxed" data-equalizer-watch>
+					<a href="/articles/<%= art['cuid']%>" class='row callout secondary'>
+						<div class='small-6 medium-5 columns'>
+							<%= image_tag art['image_filename'] %>
+						</div>
+						<div class='columns'>
+							<%= art['long_display'].html_safe %>
+						</div>
+					</a>
+					<% #<img src="https://placehold.it/400x370&text=Look at me!" alt="image for article"> %>
+				</div>
+			<% end %>
+		</article>
+	</div>
+	
+	<div class="large-4 columns">
+		<div class="row column align-spaced align-middle">
+			<h4 style="margin: 0;" class="text-center">Profiles</h4>
+		</div>
+		<hr>
+		<aside>
+			<% @member_profiles_featured.each do |profile| %>
+				<div class="column border-boxed" data-equalizer-watch>
+					<a href="/articles/<%= profile['cuid'] %>" class='row callout secondary'>
+						<div class='small-6 medium-5 columns'>
+							<%= image_tag profile['image_filename'] %>
+						</div>
+						<div class='columns'>
+							<%= profile['long_display'].html_safe %>
+						</div>
+					</a>
+				</div>
+			<% end %>
+		</aside>
+	</div>
+</div>
+</body>
+</html>

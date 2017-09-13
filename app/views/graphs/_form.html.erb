@@ -1,0 +1,56 @@
+<%= form_for(@graph, multipart: true) do |f| %>
+  <% if @graph.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@graph.errors.count, "error") %> prohibited this graph from being saved:</h2>
+
+      <ul>
+      <% @graph.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :graph_label, "Name Your Graph" %>
+    <%= f.text_field :graph_label %>
+  </div>
+  <div class="field">
+    <%= f.label :data_source, "TSV or CSV file containing your data:" %>
+    <%= f.file_field :data_source %>
+  </div>
+  <div class="row">
+    <div class="field column">
+      <%= f.label :x_increment, "X Increment" %>
+      <%= f.text_field :x_increment %>
+    </div>
+    <div class="field column">
+      <%= f.label :y_increment, "Y Increment" %>
+      <%= f.text_field :y_increment %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field column">
+      <%= f.label :x_max, "Maximum X Value" %>
+      <%= f.text_field :x_max %>
+    </div>
+    <div class="field column">
+      <%= f.label :y_max, "Maximum Y Value" %>
+      <%= f.text_field :y_max %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field column">
+      <%= f.label :x_field, "Field on X Axis" %>
+      <%= f.text_field :x_field %>
+    </div>
+    <div class="field column">
+      <%= f.label :y_field, "Field on Y Axis" %>
+      <%= f.text_field :y_field %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Make a graph' %>
+    <%= link_to 'Nevermind', graphs_path, class: 'button' %>
+  </div>
+<% end %>

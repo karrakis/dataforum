@@ -1,0 +1,91 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require foundation_and_overrides
+ *= require _settings
+ *= require_self
+ */
+body {
+	background-image: image-url('constitution.jpg');
+	background-size: 100%;
+	background-position: relative;
+	background-attachment: fixed;
+	margin: 0px;
+	padding: 0px;
+}
+
+.blocked {
+	display: block;
+	height: auto;
+	width: auto;
+}
+
+.border-boxed {
+	box-sizing: border-box;
+}
+
+.bordered_gray {
+	border: 1px solid gray;
+}
+
+.bordered_white {
+	border: 1px solid white;
+}
+
+.content {
+	width: 75%;
+	margin: auto;
+	position: relative;
+	background: #fefefe;
+	border: solid 1px #DCDCDC;
+}
+
+.hfill {
+	width: 100%;
+}
+
+.light-grayed {
+	background-color: #DCDCDC;
+}
+
+.margined {
+	margin: 2px;
+}
+
+.margin-hatted {
+	margin-top: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.margin-shod {
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+}
+
+.margin-right {
+	margin-right: 2px;
+}
+
+.margin-left {
+	margin-left: 2px;
+}
+
+.padded {
+	padding: 2px;
+}
+
+.vfill {
+	height: 100%;
+}

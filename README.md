@@ -1,2 +1,2 @@
-# dataforum
-Create Persistant graphs.  Discuss them.  Embed them.  Enjoy them.
+# kitsune_says
+version 2.0

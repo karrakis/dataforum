@@ -1,0 +1,76 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation | Welcome</title>
+  </head>
+  <body>
+    
+    <div class="off-canvas-wrapper">
+      <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+        
+
+        <div class="off-canvas-content" data-off-canvas-content>
+          <div class="position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
+            <div class="row column">
+              <br>
+              <label for="graphSourceFile" class="button">Upload File</label>
+              <input type="file" id="graphSourceFile" class="show-for-sr">
+            </div>
+          </div>
+          <div class="title-bar hide-for-large">
+            <div class="title-bar-left">
+              <br>
+              <label for="graphSourceFile" class="button">Upload File</label>
+              <input type="file" id="graphSourceFile" class="show-for-sr">
+            </div>
+          </div>
+          <div class="row small-up-2 medium-up-3 large-up-4">
+            <% 10.times do |i| %>
+              <div class="column">
+                <canvas id=<%= i %> width="550" height="550"></canvas>
+                <script>
+                  charter(<%= i %>);
+                </script>
+                <h5>Colors</h5>
+              </div>
+              <% end %>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="medium-6 columns">
+              <h3>Contact Me</h3>
+              <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor.</p>
+              <ul class="menu">
+                <li><a href="#">Dribbble</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Yo</a></li>
+              </ul>
+            </div>
+            <div class="medium-6 columns">
+              <label>Name
+                <input type="text" placeholder="Name">
+              </label>
+              <label>Email
+                <input type="text" placeholder="Email">
+              </label>
+              <label>
+                Message
+                <textarea placeholder="holla at a designerd"></textarea>
+              </label>
+              <input type="submit" class="button expanded" value="Submit">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+</html>
+
+
+    

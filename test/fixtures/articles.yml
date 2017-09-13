@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  subcategory: MyString
+  text: MyText
+  text_hash: MyString
+  image: MyString
+  deleted: false
+
+two:
+  category: MyString
+  subcategory: MyString
+  text: MyText
+  text_hash: MyString
+  image: MyString
+  deleted: false
