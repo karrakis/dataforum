@@ -1,0 +1,82 @@
+[
+	{
+		"chart_label":"chartything",
+		"chart_type":"line",
+		"x_axis_field":"dogs",
+		"y_axis_field":"people",
+		"x_labels":[1,2,3,4,5],
+		"data_lines":[
+			{
+				"label":"United States",
+				"data":[7,5,8,3,1]
+			},
+			{
+				"label":"United Kingdom",
+				"data":[1,0,3,1,0]
+			}
+		]
+	}
+]
+
+//user data may contain duplicates and may be out of order
+//axis are named in options params at end of chart javascript
+//this json is not what the user will submit, it is what we will generate, so we can assume filtering and sorting has been done.
+//this also means, though, that we should frame the data as chart.js will use it, not as we'd prefer to.
+
+
+things	people	dogs
+15000	2	2
+1300	1	3
+15600	2	1
+1234	1	5
+
+//we want here to ignore things, then pull people and dogs into a hash relationship based on which column is the x axis, in this case dogs:
+//note that the name of the key is not included here, we know the left side is dogs, the right people.
+{
+	1 => 2,
+	2 => 2,
+	3 => 1,
+	5 => 1
+}
+
+//this will weed out duplicates automatically, but it leaves us with an unsorted list.
+
+labels = hash.keys.sort
+
+//hash already contains the rules for the data values
+
+//x axis needs to know whether to iterate or to go by integers.  Probably best to make this guess for the client based on whether the data on the x axis is labels or numbers.
+//later we can provide override options and fiddle with log scales.
+
+//now let's handle separations:
+
+things	people	dogs	country
+15000	2	2	United States
+1300	1	3	United Kingdom
+15600	2	1	United States
+1234	1	5	United Kingdom
+
+//client option for this should be something like "Distinctness Field" but will need to be explained on-page
+
+{
+	"United States" => {
+		1 => 2,
+		2 => 2
+	},
+	"United Kingdom" => {
+		3 => 1,
+		5 => 1
+	}
+}
+
+//simple bar graphs are easy enough:
+
+date 	happenings
+2015	5
+2016	12
+2017	8
+
+//again we're picking an x and a y, it seems the difference for chart.js is that you don't connect the points, so it should be possible for simple charts
+//to accept the same general parameters and then be switched from one form to another on the fly.  The difference is that line graphs can handle distinct data collections and bar graphs cannot?
+//or maybe they can and they just stack colors, I should look into that.
+

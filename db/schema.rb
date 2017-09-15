@@ -25,20 +25,14 @@ ActiveRecord::Schema.define(version: 20170825212317) do
 
   create_table "graphs", force: :cascade do |t|
     t.belongs_to "users"
-    t.string     "file_name"
     t.string     "graph_label"
-    t.string     "data_source"
+    t.string     "graph_type"
     t.string     "data_source_file_name"
     t.string     "data_source_content_type"
     t.integer    "data_source_file_size"
-    t.json       "data_json"
-    t.float      "x_increment"
-    t.float      "y_increment"
-    t.float      "x_max"
-    t.float      "y_max"
     t.string     "x_field"
     t.string     "y_field"
-    t.text       "display_fields"
+    t.text       "separator_fields"
     t.boolean    "deleted"
     t.timestamps
   end

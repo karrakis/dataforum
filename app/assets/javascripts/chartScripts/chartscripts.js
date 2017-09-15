@@ -37,3 +37,43 @@ function charter(elementId){
 	    }
 	});
 }
+
+function charter(elementId, chart){
+	var ctx = document.getElementById(elementId).getContext('2d');
+	
+	ctx.globalAlpha = 0.95;
+	ctx.rect(0, 0, 550, 550);
+	ctx.fillStyle = "#435a6b";
+	ctx.fill();
+
+	ctx.font = 'italic 10pt Calibri';
+	ctx.fillStyle = "black";
+
+	var json = chart.data('graph_data')
+
+	lines = getLines(ctx, JSON.stringify(chart.data('graph_data')), 550)
+	var linesLength = lines.length
+	for(i=0; i < lines.length; i++){
+		ctx.fillText(lines[i],50,(38 + (i*12)));	
+	}
+	
+}
+
+function getLines(ctx, text, maxWidth) {
+    var words = text.split("");
+    var lines = [];
+    var currentLine = words[0];
+
+    for (var i = 1; i < words.length; i++) {
+        var word = words[i];
+        var width = ctx.measureText(currentLine + " " + word).width;
+        if (width < maxWidth) {
+            currentLine += " " + word;
+        } else {
+            lines.push(currentLine);
+            currentLine = word;
+        }
+    }
+    lines.push(currentLine);
+    return lines;
+}

@@ -19,25 +19,13 @@
     <%= f.label :data_source, "TSV or CSV file containing your data:" %>
     <%= f.file_field :data_source %>
   </div>
-  <div class="row">
-    <div class="field column">
-      <%= f.label :x_increment, "X Increment" %>
-      <%= f.text_field :x_increment %>
-    </div>
-    <div class="field column">
-      <%= f.label :y_increment, "Y Increment" %>
-      <%= f.text_field :y_increment %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="field column">
-      <%= f.label :x_max, "Maximum X Value" %>
-      <%= f.text_field :x_max %>
-    </div>
-    <div class="field column">
-      <%= f.label :y_max, "Maximum Y Value" %>
-      <%= f.text_field :y_max %>
-    </div>
+  <div class="field">
+    <%= f.label :graph_type, "Bar or Line graph?" %>
+    <%= f.select(:graph_type, [['Bar', 'bar'],
+                                ['Line', 'line']
+                               ],{ :prompt => "Please select"},
+                                 { :multiple => false, :size => 5 }
+                               ) %>
   </div>
   <div class="row">
     <div class="field column">
@@ -48,6 +36,10 @@
       <%= f.label :y_field, "Field on Y Axis" %>
       <%= f.text_field :y_field %>
     </div>
+  </div>
+  <div class="field">
+    <%= f.label :separator_fields, "Separator Fields (fields, if any, that you wish to be used to divide the data)" %>
+    <%= f.text_field :separator_fields %>
   </div>
   <div class="actions">
     <%= f.submit 'Make a graph' %>

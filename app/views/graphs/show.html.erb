@@ -1,7 +1,13 @@
+
+
 <p id="notice"><%= notice %></p>
 
 <h2><%= @graph.graph_label %></h2>
-  <%= @graph.to_json %>
+  <canvas id="theChart" data-graph_data="<%= @graph.make_data %>" height=550, width=550 ></canvas>
+  <script> 
+  	var chart = $('#theChart')
+  	charter("theChart", chart) 
+  </script>
 
 <div class="show actions">
   <%= link_to 'Edit', edit_graph_path(@graph) %>

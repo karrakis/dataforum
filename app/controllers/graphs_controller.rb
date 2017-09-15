@@ -24,8 +24,8 @@ class GraphsController < ApplicationController
   # POST /graphs
   # POST /graphs.json
   def create
-  	graph_params[:data_json] = CSV.parse(Paperclip.io_adapters.for(params[:graph][:data_source]).read).to_json
-  	pp graph_params
+  	#graph_params[:data_json] = CSV.parse(Paperclip.io_adapters.for(params[:graph][:data_source]).read).to_json
+  	#pp graph_params
 
     @graph = Graph.new(graph_params)
 
@@ -72,6 +72,6 @@ class GraphsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def graph_params
-      params.require(:graph).permit(:graph_label, :data_source, :data_json, :data_source_file_name, :data_source_file_size, :data_source_content_type, :x_increment, :y_increment, :x_max, :y_max, :x_field, :y_field)
+      params.require(:graph).permit(:graph_label, :graph_type, :data_source, :data_source_file_name, :data_source_file_size, :data_source_content_type, :x_field, :y_field, :separator_fields)
 	end
 end
