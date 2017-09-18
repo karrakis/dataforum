@@ -1,9 +1,0 @@
-things	people	tea kettles	country
-15000	1	1	United States
-1300	1	3	United Kingdom
-15600	2	1	United States
-12142	4	18	United Kingdom
-1231	5	5	United Kingdom
-1241	7	2	United States
-324321	0	0	United States
-23142	0	1	United Kingdom

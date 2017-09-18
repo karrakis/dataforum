@@ -1,9 +1,0 @@
-things	bacteria	politicians	country
-15000	10	10	United States
-1300	100	300	United Kingdom
-15600	200	100	United States
-12142	40	180	United Kingdom
-1231	50	50	United Kingdom
-1241	70	20	United States
-324321	0	0	United States
-23142	0	10	United Kingdom
