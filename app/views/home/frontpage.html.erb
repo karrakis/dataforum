@@ -13,31 +13,23 @@
         
 
         <div class="off-canvas-content" data-off-canvas-content>
-          <div class="position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
-            <div class="row column">
-              <br>
-              <label for="graphSourceFile" class="button">Upload File</label>
-              <input type="file" id="graphSourceFile" class="show-for-sr">
-            </div>
-          </div>
-          <div class="title-bar hide-for-large">
-            <div class="title-bar-left">
-              <br>
-              <label for="graphSourceFile" class="button">Upload File</label>
-              <input type="file" id="graphSourceFile" class="show-for-sr">
-            </div>
-          </div>
-          <div class="row small-up-2 medium-up-3 large-up-4">
-            <% 10.times do |i| %>
-              <div class="column">
-                <canvas id=<%= i %> width="550" height="550"></canvas>
-                <script>
-                  charter(<%= i %>);
-                </script>
-                <h5>Colors</h5>
-              </div>
+          <ul class="pagination">
+            <div class="row small-up-2 medium-up-3 large-up-4">
+              <% @graphs.each do |graph| %>
+                <a href="/graphs/<%= graph.id %>">
+                  <div class="column">
+                    <canvas id=<%= graph.id %> width="550" height="550" data-graph_data="<%= graph.make_data %>"></canvas>
+                    <script> 
+                      var chart = $("#<%= graph.id %>")
+                      charter("<%= graph.id %>", chart.data('graph_data')) 
+                    </script>
+                    <h5><%= graph.graph_label %></h5>
+                  </div>
+                </a>
               <% end %>
-          </div>
+            </div>
+          </ul>
+            
 
           <hr>
 

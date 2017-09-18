@@ -80,3 +80,25 @@ date 	happenings
 //to accept the same general parameters and then be switched from one form to another on the fly.  The difference is that line graphs can handle distinct data collections and bar graphs cannot?
 //or maybe they can and they just stack colors, I should look into that.
 
+//So things we need the user to supply:
+
+0. What the chart will be labeled
+1. The file 
+2. Which Field will be the X axis
+3. Which Field will be the Y axis
+4. Whether it's going to be a line or a bar graph
+5. If any fields are data category separators, which ones they are
+
+  create_table "graphs", force: :cascade do |t|
+    t.belongs_to "users"
+    t.string     "graph_label"
+    t.string     "graph_type"
+    t.string     "data_source_file_name"
+    t.string     "data_source_content_type"
+    t.integer    "data_source_file_size"
+    t.string     "x_field"
+    t.string     "y_field"
+    t.text       "separator_fields"
+    t.boolean    "deleted"
+    t.timestamps
+  end

@@ -19,3 +19,12 @@
 //= require_tree ./chartScripts
 
 $(function(){ $(document).foundation(); });
+
+//retcons the 'trim' function into the String class if the browser is running antiquated javascript
+if(typeof(String.prototype.trim) === "undefined")
+{
+    String.prototype.trim = function() 
+    {
+        return String(this).replace(/^\s+|\s+$/g, '');
+    };
+}

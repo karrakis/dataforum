@@ -16,10 +16,10 @@ class Graph < ActiveRecord::Base
 	  output['graph_label'] = self.graph_label
 	  output['x_field'] = self.x_field
 	  output['y_field'] = self.y_field
+	  output['graph_type'] = self.graph_type
+	  output['separator_fields'] = self.separator_fields
 	  output['file'] = file
-	  pp output
 	  output = output.to_json
-	  pp output
 	  output
   end
 end

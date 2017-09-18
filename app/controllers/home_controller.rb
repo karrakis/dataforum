@@ -1,2 +1,5 @@
 class HomeController < ApplicationController
-end
+	def frontpage
+		@graphs = Graph.all
+	end
+end	
