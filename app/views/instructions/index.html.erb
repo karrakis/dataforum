@@ -1,0 +1,131 @@
+<div class="row">
+	<div class='column'>
+		<p>KitsuneSays GraphAThing requires the submission of a text file (.tsv format) or JSON data (via API).  The API documenation is at the bottom of this page.</p>
+		<p>For File submission, KitsuneSays GraphAThing reads data from left to right from a TSV (Tab Separated Values) file.  A sample TSV is illustrated below.  Changing this sample file will change the graph to the right.  Some fields you would normally be prompted for have been pre-defined.</p>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="column text-center">
+		<h3>Example Pie Chart</h3>
+	</div>
+</div>
+<div class="row">
+	<%= text_area(:input, :pie, cols: 40, rows: 15, value: @default_pie_data, class: "column large-6 medium-12") %>
+	<div class="column large-6 medium-12">
+		<canvas id='pieTest' data-chart_data="<%= @pieData %>" width=100% height=100%></canvas>
+		<script>
+				var chart = $('#pieTest')
+				var pieTestChart = charter("pieTest", chart.data('chart_data'))
+				document.getElementById('input_pie').onchange = function(event){
+					pieTestChart.destroy();
+					pieTestChart = charter("pieTest", {
+							'graph_label':'Example Pie Graph',
+							'x_field':'mammal',
+							'y_field':'value',
+							'graph_type':'pie',
+							'separator_fields':'',
+							'file':parseTSV($('#input_pie').val())
+						})
+				}
+		</script>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="column text-center">
+		<h3>Example Bar Graph</h3>
+	</div>
+</div>
+<div class="row">
+	<%= text_area(:input, :bar, cols: 40, rows: 15, value: @default_bar_data, class: "column large-6 medium-12") %>
+	<div class="column large-6 medium-12">
+		<canvas id='barTest' data-chart_data="<%= @barData %>" width=100% height=100%></canvas>
+		<script>
+				var chart = $('#barTest')
+				var barTestChart = charter("barTest", chart.data('chart_data'))
+				document.getElementById('input_bar').onchange = function(event){
+					barTestChart.destroy();
+					barTestChart = charter("barTest", {
+							'graph_label':'Example Bar Graph',
+							'x_field':'mammal',
+							'y_field':'value',
+							'graph_type':'bar',
+							'separator_fields':'',
+							'file':parseTSV($('#input_bar').val())
+						})
+				}
+		</script>
+	</div>putting tab keys in a text areaputting tab keys in a text areapuputting tab keys in a text areatting tab keys in a text area
+</div>
+<hr>
+<div class="row">
+	<div class="column text-center">
+		<h3>Example Line Graph</h3>
+	</div>
+</div>
+<div class="row">
+	<%= text_area(:input, :line, cols: 40, rows: 15, value: @default_line_data, class: "column large-6 medium-12") %>
+	<div class="column large-6 medium-12">
+		<canvas id='lineTest' data-chart_data="<%= @lineData %>" width=100% height=100%></canvas>
+		<script>
+				var chart = $('#lineTest')
+				var lineTestChart = charter("lineTest", chart.data('chart_data'))
+
+				document.getElementById('input_line').onchange = function(event){
+					lineTestChart.destroy();
+					lineTestChart = charter("lineTest", {
+							'graph_label':'Example Line Graph',
+							'x_field':'legs',
+							'y_field':'eyes',
+							'graph_type':'line',
+							'separator_fields':'beastie',
+							'file':parseTSV($('#input_line').val())
+						})
+				}
+		</script>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="column text-center">
+		<h3>API Instructions</h3>
+	</div>
+</div>
+<div class="row column">
+	<ol>
+		<li><a href="#">Create a User account</a></li>
+		<li><a href="#">Go to your Profile</a> - here is where you'll find your API key</li>
+		<li>Data should be sent as type application/json</li>
+	</ol>
+</div>
+<div class="row column">
+	<h4>Example Curl:</h4>
+	<div class='callout'>
+		curl -H "Content-Type: application/json" -H "Authorization: Token [PUT YOUR API KEY HERE]" --data '{"x_field":"compare","y_field":"contrast","graph_label":"API Demo","graph_type":"pie","data_json":"[{\"compare\":\"dogs\",\"contrast\":30},{\"compare\":\"cats\",\"contrast\":50}]"}' localhost:3000/api/v1/graphs
+	</div>
+</div>
+<div class="row column">
+	<p>These are the fields available to the API:</p>
+	<ol>
+		<li>graph_label</li>
+		<li>graph_type ("bar", "line" or "pie")</li>
+		<li>x_field (for pie charts, this field defines the column containing section <b>descriptions</b>)</li>
+		<li>y_field (for pie charts, this field defines the column containing section <b>values</b>)</li>
+		<li>data_json (contains your graph data formatted as JSON)</li>
+	</ol>
+
+
+	<p>API will return JSON containing these fields:</p>
+	<ol>
+		<li>id (the id of the graph in our database)</li>
+		<li>web_link (the web address of the graph's view)</li>
+		<li>embed_link (which embeds the graph in your own content and links back to the graph's view)</li>
+	</ol>
+</div>
+
+<script>
+	tabIsTab('#input_pie')
+	tabIsTab('#input_bar')
+	tabIsTab('#input_line')
+</script>

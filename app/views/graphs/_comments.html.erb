@@ -1,0 +1,9 @@
+<%= @forum_posts.each do |m| %>
+	<div class='callout'>
+		<%= m.post_contents %>
+		<% if current_user.id == m.users_id %>
+			
+		<% end %>
+	</div>
+<% end %>
+<%= link_to 'Post New Comment', new_graph_forum_post_path(@graph) %>

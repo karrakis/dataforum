@@ -1,0 +1,9 @@
+<a href="/graphs/<%= graph.id %>">
+  <div class="column">
+    <canvas id=<%= graph.id %> width=200px height=200px data-graph_data="<%= graph.make_data %>"></canvas>
+    <script> 
+      var chart = $("#<%= graph.id %>")
+      charter("<%= graph.id %>", chart.data('graph_data')) 
+    </script>
+  </div>
+</a>

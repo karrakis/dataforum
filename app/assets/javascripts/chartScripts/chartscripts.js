@@ -34,13 +34,18 @@ function charter(elementId, chart_data){
 	var labels = []
 
 	file_data.forEach(function(el){
-		if(el[chart_data['x_field']].match(/[A-Za-z]/)){
-			x_is_integers = 0;
+		if(typeof(el[chart_data['x_field']]) == typeof "string"){
+			//if this is attempted on integers, it explodes.  If integers are converted into Strings in Javascript, they explode.  Fuck it.
+			if(el[chart_data['x_field']].match(/[^0-9]/)){
+				x_is_integers = 0;
+			}
 		}
-		if(el[chart_data['y_field']].match(/[A-Za-z]/)){
-			y_is_integers = 0;
+		if(typeof(el[chart_data['y_field']]) == typeof "string"){
+			//if this is attempted on integers, it explodes.  If integers are converted into Strings in Javascript, they explode.  Fuck it.
+			if(el[chart_data['y_field']].match(/[^0-9]/)){
+				y_is_integers = 0;
+			}
 		}
-		
 		var current_x = parseInt(el[chart_data['x_field']])
 		var current_y = parseInt(el[chart_data['y_field']])
 
@@ -57,57 +62,108 @@ function charter(elementId, chart_data){
 			labels.push(i)
 		}
 	}else{
-		//labels comes as strings from x field values uniqued
+		labels = file_data.map(function(el){
+			return el[chart_data['x_field']]
+		})
 	}
 
 	if(y_is_integers != 1){
 		//I don't know what I'll need to do here, will depend on chart.js
 	}
 
-	var separator_fields = chart_data['separator_fields'].split(',')
-	var datasets = {}
-
-	for(i=0; i < separator_fields.length; i++){
-		for(n=0; n < file_data.length; n++){
-			datasets[file_data[n][separator_fields[i]]] = datasets[file_data[n][separator_fields[i]]] || file_data.filter(function (el) {
-																											  return el[separator_fields[i]] == file_data[n][separator_fields[i]]
-																											});
-		}
+	if(chart_data['separator_fields'] != null){
+		var separator_fields = chart_data['separator_fields'].split(',')
+		var datasets = {}
+	}else{
+		separator_fields = []
+		var datasets = {}
 	}
 
-	//alert(JSON.stringify(datasets))
+	if (JSON.stringify(separator_fields) == '[""]'){
+		separator_fields = []
+	}
+	
+	if (separator_fields.length != 0) {
+		for(i=0; i < separator_fields.length; i++){
+			for(n=0; n < file_data.length; n++){
+				datasets[file_data[n][separator_fields[i]]] = datasets[file_data[n][separator_fields[i]]] || file_data.filter(function (el) {
+																												  return el[separator_fields[i]] == file_data[n][separator_fields[i]]
+																												});
+			}
+		}
+	}else{
+		datasets[chart_data['x_field']] = []
+		file_data.forEach(function(el){
+			datasets[chart_data['x_field']].push(el[chart_data['y_field']])
+		});
+	}
+
+	// alert(JSON.stringify(datasets))
 
 	var datasets_final = []
 
 	dataset_labels = Object.keys(datasets)
 
 	for(i=0; i < dataset_labels.length; i++){
-		var data_list = []
+		var data_list = [];
+		var lineColor = [];
+		var backgroundColor = [];
 		for(n=0; n < labels.length; n++){
-			var isone = datasets[dataset_labels[i]].filter(function(el) {
-				return el[chart_data['x_field']] == n
-			})
-			if(JSON.stringify(isone) != '[]'){
-				data_list.push(isone[0][chart_data['y_field']])
-			}else{
-				data_list.push(null)
+			if (datasets[dataset_labels[i]][0].hasOwnProperty(chart_data['x_field'])){
+				var isone = datasets[dataset_labels[i]].filter(function(el) {
+					return el[chart_data['x_field']] == n
+				})
+				if(JSON.stringify(isone) != '[]'){
+					data_list.push(isone[0][chart_data['y_field']])
+				}else{
+					data_list.push(null)
+				}
+				dataset_label = dataset_labels[i]
+				lineColor = lineColors[i]
+				backgroundColor = backgroundColors[i]
+			} else {
+				data_list = datasets[dataset_labels[i]]
+				if (chart_data['graph_type'] == 'bar'){
+					dataset_label = 0
+				} else {
+					dataset_label = dataset_labels[i]
+				}
+	
+				data_list.forEach(function(el, i){
+					lineColor.push(lineColors[i])
+					backgroundColor.push(backgroundColors[i])
+				});
 			}
+
+		}
+
+		if (dataset_label == 0){
+			Chart.defaults.global.legend.display = false;
+			Chart.defaults.global.tooltips.enabled = false;
+		} else {
+			Chart.defaults.global.legend.display = true;
+			Chart.defaults.global.tooltips.enabled = true;
 		}
 
 		datasets_final.push(
 				{
-					label: dataset_labels[i],
+					label: dataset_label,
 					data: data_list,
-					borderColor: lineColors[i],
-					backgroundColor: backgroundColors[i],
+					borderColor: lineColor,
+					backgroundColor: backgroundColor,
 					borderWidth: 1,
-					fill: false
+					fill: false,
+					spanGaps: true
 				}
 			)
 	};
-	
 
-	var myChart = new Chart(ctx, {
+	var display_xaxis_label = false
+	if (x_is_integers == 1 || chart_data['graph_type'] == 'pie'){
+		display_xaxis_label = true
+	}
+
+	var chart_description = {
 	    type: chart_data['graph_type'],
 	    data: {
 	        labels: labels,
@@ -126,14 +182,48 @@ function charter(elementId, chart_data){
 	            }],
 	            xAxes: [{
 	            	scaleLabel: {
-			          display: true,
+			          display: display_xaxis_label,
 			          labelString: chart_data['x_field']
 			        },
 	                ticks: {
 	                    beginAtZero:true
 	                }
 	            }]
+	        },
+	        title: {
+	        	display: true,
+	        	text: chart_data['graph_label']
 	        }
 	    }
-	});
+	}
+
+	if (chart_data['graph_type'] == 'pie'){
+		delete chart_description['options']['scales']
+	}
+
+	var myChart = new Chart(ctx, chart_description);
+	return myChart
+}
+
+function parseTSV(str) {
+
+	var x = str.split('\n');
+	for (var i=0; i<x.length; i++) {
+		if(i==0){
+			var headers = x[i].split('\t')
+		} else {
+			y = x[i].split('\t');
+			z = y.map(function(e,i){
+				return [headers[i], e]
+			})
+		    var result = z.reduce(function(map, obj) {
+			    map[obj[0]] = obj[1];
+			    return map;
+			}, {});
+
+		    x[i] = result;
+		}
+	}
+	x.shift()
+	return JSON.stringify(x)
 }

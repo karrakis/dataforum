@@ -1,0 +1,6 @@
+<%= form_for(@forum_post, multipart: true) do |f| %>
+	<div id="comment" class="field column">
+      <%= f.label :comment, "Add a Comment:", id: "ctext" %>
+      <%= f.text_field :post_contents %>
+    </div>
+<% end %>

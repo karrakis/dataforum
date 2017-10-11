@@ -15,34 +15,55 @@
     <%= f.label :graph_label, "Name Your Graph" %>
     <%= f.text_field :graph_label %>
   </div>
-  <div class="field">
-    <%= f.label :data_source, "TSV or CSV file containing your data:" %>
-    <%= f.file_field :data_source %>
-  </div>
-  <div class="field">
-    <%= f.label :graph_type, "Bar or Line graph?" %>
-    <%= f.select(:graph_type, [['Bar', 'bar'],
-                                ['Line', 'line']
-                               ],{ :prompt => "Please select"},
-                                 { :multiple => false, :size => 5 }
-                               ) %>
-  </div>
   <div class="row">
-    <div class="field column">
-      <%= f.label :x_field, "Field on X Axis" %>
+    <div class="field column large-6">
+      <%= f.label :data_source, "TSV or CSV file containing your data:" %>
+      <%= f.file_field :data_source %>
+    </div>
+    <div class="column large-6">
+        <%= label_tag :graph_type, 'Type of Graph:' %>
+        <%= select(:graph, :graph_type, [
+          ['Bar', 'bar'],
+          ['Line', 'line'],
+          ['Pie', 'pie']
+          ])%>
+    </div>
+  </div>
+  <div id="axisDefinition" class="row column">
+    <div id="x_axis" class="field column">
+      <%= f.label :x_field, "Field on X Axis", id: "x" %>
       <%= f.text_field :x_field %>
     </div>
-    <div class="field column">
-      <%= f.label :y_field, "Field on Y Axis" %>
+    <div id="y_axis" class="field column">
+      <%= f.label :y_field, "Field on Y Axis", id: "y" %>
       <%= f.text_field :y_field %>
     </div>
   </div>
-  <div class="field">
-    <%= f.label :separator_fields, "Separator Fields (fields, if any, that you wish to be used to divide the data)" %>
+  <div id="separators" class="field">
+    <%= f.label :separator_fields, "Separator Fields (fields, if any, that divide the data into separate lines), comma-separated: " %>
     <%= f.text_field :separator_fields %>
   </div>
   <div class="actions">
-    <%= f.submit 'Make a graph' %>
+    <%= f.submit 'Make a graph', class: 'button' %>
     <%= link_to 'Nevermind', graphs_path, class: 'button' %>
+    <%= link_to 'Instructions', '/instructions', class: 'button' %>
   </div>
 <% end %>
+
+<script>
+  $("#separators").hide();
+
+  $("#graph_graph_type").change(function() {
+   var selopt = $(this.children[this.selectedIndex]);
+       graphType = selopt.val();
+   if (graphType == 'bar' || graphType == 'pie' ){
+       document.getElementById("x").innerHTML = 'Field containing Items to Compare (X Axis)';
+       document.getElementById("y").innerHTML = 'Field containing Values (Y Axis)';
+       $("#separators").hide();
+   } else if (graphType == 'line') {
+       document.getElementById("x").innerHTML = 'Field on X Axis';
+       document.getElementById("y").innerHTML = 'Field on Y Axis';
+       $("#separators").show();
+   }
+  })
+</script>

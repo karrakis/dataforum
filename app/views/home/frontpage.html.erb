@@ -13,50 +13,25 @@
         
 
         <div class="off-canvas-content" data-off-canvas-content>
-          <ul class="pagination">
+            <div class='row column'>
+                <div class='column centered'>
+                  <h1 class='text-center'>Graph Generator by KitsuneSays Analytics</h1>
+                  <p class='text-center'>We needed one, so we made one.  If you need one too, enjoy!</p>
+                </div>
+            </div>
+            <hr>
             <div class="row small-up-2 medium-up-3 large-up-4">
-              <% @graphs.each do |graph| %>
-                <a href="/graphs/<%= graph.id %>">
-                  <div class="column">
-                    <canvas id=<%= graph.id %> width="550" height="550" data-graph_data="<%= graph.make_data %>"></canvas>
-                    <script> 
-                      var chart = $("#<%= graph.id %>")
-                      charter("<%= graph.id %>", chart.data('graph_data')) 
-                    </script>
-                    <h5><%= graph.graph_label %></h5>
-                  </div>
-                </a>
-              <% end %>
+              <%= render @graphs %>
             </div>
-          </ul>
+            <div class="flickr_pagination">
+              <div class="page_info">
+                <%= page_entries_info @graphs, :model => 'graph' %>
+              </div>
+              <%= will_paginate @graphs, :container => false %>
+            </div>
             
-
-          <hr>
-
-          <div class="row">
-            <div class="medium-6 columns">
-              <h3>Contact Me</h3>
-              <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor.</p>
-              <ul class="menu">
-                <li><a href="#">Dribbble</a></li>
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">Yo</a></li>
-              </ul>
-            </div>
-            <div class="medium-6 columns">
-              <label>Name
-                <input type="text" placeholder="Name">
-              </label>
-              <label>Email
-                <input type="text" placeholder="Email">
-              </label>
-              <label>
-                Message
-                <textarea placeholder="holla at a designerd"></textarea>
-              </label>
-              <input type="submit" class="button expanded" value="Submit">
-            </div>
-          </div>
+          
+            
         </div>
       </div>
     </div>
