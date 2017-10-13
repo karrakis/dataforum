@@ -14,13 +14,12 @@ module DataForum
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.serve_static_assets = true
-  	config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
-	  allow do
-	    origins '*'
-	    resource '/embed.js', :headers => :any, :methods => [:get, :post, :options] #-> I believe resource needs to be a specific URL - will have to check this
-	  	resource '/embed/*', :headers => :any, :methods => [:get, :post, :options]
-	  end
-	end
+
+	#config.middleware.insert_before 0, Rack::Cors do
+    #  allow do
+    #    origins '*'
+    #    resource '*', :headers => :any, :methods => [:get, :post, :options]
+    #  end
+    #end
   end
 end
