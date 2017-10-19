@@ -9,7 +9,7 @@ development:
   host: localhost
   adapter: postgresql
   encoding: utf8
-  database: kitsunesays_development
+  database: dataforum_development
   pool: 5
   username: kitsune_prefab
   password: zork
@@ -18,7 +18,7 @@ test: &TEST
   host: localhost
   adapter: postgresql
   encoding: utf8
-  database: kitsunesays_test
+  database: dataforum_test
   pool: 5
   username: kitsune_prefab
   password: zork
@@ -27,7 +27,7 @@ production:
   host: localhost
   adapter: postgresql
   encoding: utf8
-  database: kitsunesays_production
+  database: dataforum_production
   pool: 50
   username: <%= Figaro.env.ksproduser %>
   password: <%= Figaro.env.ksprodpass %>
