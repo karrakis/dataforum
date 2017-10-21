@@ -73,4 +73,3 @@ gem 'devise'
 gem 'devise_google_authenticator'
 
 gem 'rack-cors'
-gem 'passenger'

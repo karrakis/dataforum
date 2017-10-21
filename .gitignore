@@ -23,5 +23,6 @@
 # Ignore application configuration
 /config/application.yml
 
-# Ignore uploaded files
+# Ignore uploaded files and assets
+/public/assets/*
 /public/system/graphs/*
