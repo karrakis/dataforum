@@ -76,4 +76,9 @@ gem 'devise'
 gem 'devise_google_authenticator'
 
 gem 'rack-cors'
+<<<<<<< HEAD
 gem 'simple_command'
+=======
+
+gem 'devise-jwt'
+>>>>>>> abb70e8f08084f7430e163cbf3f6dcb38b5b419f

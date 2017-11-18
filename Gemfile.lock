@@ -71,12 +71,22 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    devise-jwt (0.4.1)
+      devise (~> 4.0)
+      warden-jwt_auth (~> 0.1.2)
     devise_google_authenticator (0.3.15)
       actionmailer (>= 3.2.12)
       devise (>= 3.2.0)
       railties (>= 3.0)
       rotp (~> 1.4.0)
     diff-lcs (1.3)
+    dry-auto_inject (0.4.4)
+      dry-container (>= 0.3.4)
+    dry-configurable (0.7.0)
+      concurrent-ruby (~> 1.0)
+    dry-container (0.6.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.1, >= 0.1.3)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.8.1)
@@ -106,7 +116,11 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+<<<<<<< HEAD
     jwt (2.1.0)
+=======
+    jwt (1.5.6)
+>>>>>>> abb70e8f08084f7430e163cbf3f6dcb38b5b419f
     libv8 (3.16.14.19)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -239,6 +253,11 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
+    warden-jwt_auth (0.1.3)
+      dry-auto_inject (~> 0.4)
+      dry-configurable (~> 0.5)
+      jwt (~> 1.5)
+      warden (~> 1.2)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -260,6 +279,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   devise
+  devise-jwt
   devise_google_authenticator
   factory_girl_rails (~> 4.0)
   faker
