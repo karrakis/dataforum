@@ -23,4 +23,13 @@ module DataForum
     #  end
     #end
   end
+
+  #This opens the Devise RegistrationsController class for editing and adds a method to create a user API key and save it.
+  module Devise
+    class RegistrationsController
+      def boop
+        puts "so that worked, huh?"
+      end
+    end
+  end
 end
