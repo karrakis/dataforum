@@ -116,11 +116,7 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
-<<<<<<< HEAD
     jwt (2.1.0)
-=======
-    jwt (1.5.6)
->>>>>>> abb70e8f08084f7430e163cbf3f6dcb38b5b419f
     libv8 (3.16.14.19)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
