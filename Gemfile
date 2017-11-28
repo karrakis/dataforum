@@ -72,4 +72,4 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'devise_google_authenticator'
 
-gem 'simple_command'
+gem 'rack/cors'
