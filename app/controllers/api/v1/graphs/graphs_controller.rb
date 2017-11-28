@@ -1,5 +1,4 @@
 class Api::V1::Graphs::GraphsController < BaseApiController
-  before_action :authenticate_request
   before_action :set_graph, only: [:show, :edit, :update, :destroy]
 
 
