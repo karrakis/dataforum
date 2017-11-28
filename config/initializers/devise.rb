@@ -8,12 +8,6 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'b3cca826c8abf9a1df8bf552f10cfb104e44766eb041f32933aed1bedf14e60aeb3bfaeefd3ce0475f699fe75f9e555d91695fdece284551be0fb2d8e4381654'
 
-  #config.jwt do |jwt|
-  #  jwt.secret = Figaro.env.devise_jwt_secret_key
-  #
-  #  jwt.expiration_time = 86400
-  #end
-
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
