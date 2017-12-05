@@ -8,12 +8,6 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'b3cca826c8abf9a1df8bf552f10cfb104e44766eb041f32933aed1bedf14e60aeb3bfaeefd3ce0475f699fe75f9e555d91695fdece284551be0fb2d8e4381654'
 
-  config.jwt do |jwt|
-    jwt.secret = Figaro.env.devise_jwt_secret_key
-
-    jwt.expiration_time = 86400
-  end
-
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -229,7 +223,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).

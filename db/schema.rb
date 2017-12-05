@@ -46,12 +46,6 @@ ActiveRecord::Schema.define(version: 20171116152404) do
     t.index ["users_id"], name: "index_graphs_on_users_id", using: :btree
   end
 
-  create_table "jwt_blacklist", force: :cascade do |t|
-    t.string   "jti", null: false
-    t.datetime "exp", null: false
-    t.index ["jti"], name: "index_jwt_blacklist_on_jti", using: :btree
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "auth_token"
     t.datetime "created_at",                           null: false
