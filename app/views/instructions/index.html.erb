@@ -1,7 +1,7 @@
 <div class="row">
 	<div class='column'>
-		<p>KitsuneSays GraphAThing requires the submission of a text file (.tsv format) or JSON data (via API).  The API documenation is at the bottom of this page.</p>
-		<p>For File submission, KitsuneSays GraphAThing reads data from left to right from a TSV (Tab Separated Values) file.  A sample TSV is illustrated below.  Changing this sample file will change the graph to the right.  Some fields you would normally be prompted for have been pre-defined.</p>
+		<p>Graphity Space requires the submission of a text file (.tsv format) or JSON data (via API).  The API documenation is at the bottom of this page.</p>
+		<p>For File submission, Graphity Space reads data from left to right from a TSV (Tab Separated Values) file.  A sample TSV is illustrated below.  Changing this sample file will change the graph to the right.  Some fields you would normally be prompted for have been pre-defined.</p>
 	</div>
 </div>
 <hr>
@@ -102,7 +102,7 @@
 <div class="row column">
 	<h4>Example Curl:</h4>
 	<div class='callout'>
-		curl -H "Content-Type: application/json" -H "Authorization: Token [PUT YOUR API KEY HERE]" --data '{"x_field":"compare","y_field":"contrast","graph_label":"API Demo","graph_type":"pie","data_json":"[{\"compare\":\"dogs\",\"contrast\":30},{\"compare\":\"cats\",\"contrast\":50}]"}' localhost:3000/api/v1/graphs
+		curl -X POST -H "Content-Type: application/json" -H "Authorization: Token token=[PUT YOUR API KEY HERE]" --data '{"x_field":"compare","y_field":"contrast","graph_label":"API Demo","graph_type":"pie","data_json":"[{\"compare\":\"dogs\",\"contrast\":30},{\"compare\":\"cats\",\"contrast\":50}]"}' graphity.space/api/v1/graphs
 	</div>
 </div>
 <div class="row column">
