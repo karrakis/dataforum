@@ -119,8 +119,8 @@ function charter(elementId, chart_data){
 					data_list.push(null)
 				}
 				dataset_label = dataset_labels[i]
-				lineColor = lineColors[i]
-				backgroundColor = backgroundColors[i]
+				lineColor = lineColors[(i < lineColors.count) ? i : i % lineColors.count]
+				backgroundColor = backgroundColors[(i < backgroundColors.count) ? i : i % backgroundColors.count]
 			} else {
 				data_list = datasets[dataset_labels[i]]
 				if (chart_data['graph_type'] == 'bar'){
@@ -130,8 +130,8 @@ function charter(elementId, chart_data){
 				}
 	
 				data_list.forEach(function(el, i){
-					lineColor.push(lineColors[i])
-					backgroundColor.push(backgroundColors[i])
+					lineColor.push(lineColors[(i < lineColors.count) ? i : i % lineColors.count])
+					backgroundColor.push(backgroundColors[(i < backgroundColors.count) ? i : i % backgroundColors.count])
 				});
 			}
 
