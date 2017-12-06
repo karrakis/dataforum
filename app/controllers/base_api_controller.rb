@@ -10,7 +10,6 @@ class BaseApiController < ApplicationController
   end
 
    def parse_request
-    logger.debug request.body.read
      @json = JSON.parse(request.body.read)
    end
 end
