@@ -4,11 +4,7 @@ class BaseApiController < ApplicationController
 
   private
   def authenticate
-    Rails.logger.debug "HHHHEEEEERE WE AAAARE"
     authenticate_or_request_with_http_token do |token, options|
-      Rails.logger.debug "HHHHHHHHHHHHHHH"
-      Rails.logger.debug token
-      Rails.logger.debug "GGGGGGGGGGGGGGG"
       @user = User.where(auth_token: token).first
     end
   end
