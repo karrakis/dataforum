@@ -98,11 +98,14 @@ function charter(elementId, chart_data){
 		});
 	}
 
-	alert(JSON.stringify(datasets))
+	//alert(JSON.stringify(datasets))
 
 	var datasets_final = []
 
 	dataset_labels = Object.keys(datasets)
+
+	//alert(JSON.stringify(dataset_labels))
+	//alert(JSON.stringify(labels))
 
 	for(i=0; i < dataset_labels.length; i++){
 		var data_list = [];
@@ -111,7 +114,7 @@ function charter(elementId, chart_data){
 		for(n=0; n < labels.length; n++){
 			if (datasets[dataset_labels[i]][0].hasOwnProperty(chart_data['x_field'])){
 				var isone = datasets[dataset_labels[i]].filter(function(el) {
-					return el[chart_data['x_field']] == n
+					return el[chart_data['x_field']] == labels[n]
 				})
 				if(JSON.stringify(isone) != '[]'){
 					data_list.push(isone[0][chart_data['y_field']])
@@ -128,11 +131,12 @@ function charter(elementId, chart_data){
 				} else {
 					dataset_label = dataset_labels[i]
 				}
-	
-				data_list.forEach(function(el, i){
-					lineColor.push(lineColors[i])
-					backgroundColor.push(backgroundColors[i])
+
+				data_list.forEach(function(el, ia){
+					lineColor.push(lineColors[ia])
+					backgroundColor.push(backgroundColors[ia])
 				});
+
 			}
 
 		}
@@ -145,6 +149,9 @@ function charter(elementId, chart_data){
 			Chart.defaults.global.tooltips.enabled = true;
 		}
 		
+		lineColor = lineColor ? lineColor : '#'+(Math.random()*0xFFFFFF<<0).toString(16)
+		backgroundColor = backgroundColor ? backgroundColor : '#'+(Math.random()*0xFFFFFF<<0).toString(16)
+
 		datasets_final.push(
 				{
 					label: dataset_label,
@@ -157,6 +164,8 @@ function charter(elementId, chart_data){
 				}
 			)
 	};
+
+	//alert(JSON.stringify(datasets_final))
 
 	//this doesn't work quite as intended, we'll need to set a flag.
 	var display_xaxis_label = true
@@ -171,6 +180,7 @@ function charter(elementId, chart_data){
 	        datasets: datasets_final
 	    },
 	    options: {
+	    	responsive: true,
 	        scales: {
 	            yAxes: [{
 	            	scaleLabel: {

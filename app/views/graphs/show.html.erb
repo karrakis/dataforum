@@ -4,7 +4,7 @@
 
 <div class="row column">
 	<h2><%= @graph.graph_label %></h2>
-	<canvas id="theChart" data-graph_data="<%= @graph.make_data %>" height=550, width=550 class='large-6'></canvas>
+	<canvas id="theChart" data-graph_data="<%= @graph.make_data %>" class='large-12'></canvas>
 	<script> 
  		var chart = $('#theChart')
  		charter("theChart", chart.data('graph_data')) 
