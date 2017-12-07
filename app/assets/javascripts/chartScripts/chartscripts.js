@@ -185,10 +185,7 @@ function charter(elementId, chart_data){
 	            	scaleLabel: {
 			          display: display_xaxis_label,
 			          labelString: chart_data['x_field']
-			        },
-	                ticks: {
-	                    beginAtZero:true
-	                }
+			        }
 	            }]
 	        },
 	        title: {
