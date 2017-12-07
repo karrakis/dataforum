@@ -130,8 +130,8 @@ function charter(elementId, chart_data){
 				}
 	
 				data_list.forEach(function(el, i){
-					lineColor.push(lineColors[i])
-					backgroundColor.push(backgroundColors[i])
+					lineColor.push(lineColors[i] ? lineColors[i] : 'rgba(25, 50, 75, 0.2)')
+					backgroundColor.push(backgroundColors[i] ? backgroundColors[i] : 'rgba(75, 50, 25, 0.2)')
 				});
 			}
 
