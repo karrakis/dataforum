@@ -158,10 +158,11 @@ function charter(elementId, chart_data){
 			)
 	};
 
-	var display_xaxis_label = false
-	if (x_is_integers == 1 || chart_data['graph_type'] == 'pie'){
-		display_xaxis_label = true
-	}
+	//this doesn't work quite as intended, we'll need to set a flag.
+	var display_xaxis_label = true
+	//if (x_is_integers == 1 || chart_data['graph_type'] == 'pie'){
+	//	display_xaxis_label = true
+	//}
 
 	var chart_description = {
 	    type: chart_data['graph_type'],
@@ -199,6 +200,10 @@ function charter(elementId, chart_data){
 
 	if (chart_data['graph_type'] == 'pie'){
 		delete chart_description['options']['scales']
+	}
+
+	if (x_is_integers == 0){
+		delete chart_description['options']['xAxes']['ticks']
 	}
 
 	var myChart = new Chart(ctx, chart_description);
