@@ -144,7 +144,7 @@ function charter(elementId, chart_data){
 			Chart.defaults.global.legend.display = true;
 			Chart.defaults.global.tooltips.enabled = true;
 		}
-
+		alert(JSON.stringify(data_list))
 		datasets_final.push(
 				{
 					label: dataset_label,
