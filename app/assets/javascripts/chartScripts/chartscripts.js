@@ -202,10 +202,6 @@ function charter(elementId, chart_data){
 		delete chart_description['options']['scales']
 	}
 
-	if (x_is_integers == 0){
-		delete chart_description['options']['xAxes']['ticks']
-	}
-
 	var myChart = new Chart(ctx, chart_description);
 	return myChart
 }
