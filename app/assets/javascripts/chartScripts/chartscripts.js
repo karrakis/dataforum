@@ -62,9 +62,9 @@ function charter(elementId, chart_data){
 			labels.push(i)
 		}
 	}else{
-		labels = file_data.map(function(el){
+		labels = uniqueArray(file_data.map(function(el){
 			return el[chart_data['x_field']]
-		}).filter((v, i, a) => a.indexOf(v) === i);
+		})) //.filter((v, i, a) => a.indexOf(v) === i);
 	}
 
 	if(y_is_integers != 1){
@@ -244,3 +244,9 @@ function parseTSV(str) {
 	x.shift()
 	return JSON.stringify(x)
 }
+
+var uniqueArray = function(arrArg) {
+  return arrArg.filter(function(elem, pos,arr) {
+    return arr.indexOf(elem) == pos;
+  });
+};
