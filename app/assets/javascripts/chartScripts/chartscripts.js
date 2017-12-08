@@ -64,7 +64,7 @@ function charter(elementId, chart_data){
 	}else{
 		labels = file_data.map(function(el){
 			return el[chart_data['x_field']]
-		})
+		}).filter((v, i, a) => a.indexOf(v) === i);
 	}
 
 	if(y_is_integers != 1){
@@ -159,7 +159,7 @@ function charter(elementId, chart_data){
 					borderColor: lineColor,
 					backgroundColor: backgroundColor,
 					borderWidth: 1,
-					fill: false,
+					fill: true,
 					spanGaps: true
 				}
 			)
@@ -172,6 +172,12 @@ function charter(elementId, chart_data){
 	//if (x_is_integers == 1 || chart_data['graph_type'] == 'pie'){
 	//	display_xaxis_label = true
 	//}
+
+	if(x_is_integers == 0){
+		autoSkip = false
+	}else{
+		autoSkip = true
+	}
 
 	var chart_description = {
 	    type: chart_data['graph_type'],
@@ -195,6 +201,9 @@ function charter(elementId, chart_data){
 	            	scaleLabel: {
 			          display: display_xaxis_label,
 			          labelString: chart_data['x_field']
+			        },
+			        ticks: {
+			        	autoSkip: autoSkip
 			        }
 	            }]
 	        },
