@@ -26,9 +26,9 @@ class Api::V1::Graphs::GraphsController < BaseApiController
 
     respond_to do |format|
       if @graph.save
-        render json: @graph
+        format.json { render json: @graph.to_json }
       else
-        render json: @graph.errors, status: :unprocessable_entity
+        format.json { render json: @graph.errors.to_json, status: :unprocessable_entity }
       end
     end
   end
