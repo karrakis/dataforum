@@ -24,13 +24,13 @@ class Api::V1::Graphs::GraphsController < BaseApiController
 
     #DownWorker.perform_async(@graph['image_link'])
 
-    respond_to do |format|
+    #respond_to do |format|
       if @graph.save
         format.json { render json: @graph.to_json }
       else
         format.json { render json: @graph.errors.to_json, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   private
