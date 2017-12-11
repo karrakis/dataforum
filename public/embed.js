@@ -6,6 +6,6 @@ window.onload = function() {
    //iFrame
    var iframe = document.createElement('iframe');
    iframe.style.display = "inherit";
-   iframe.src = "https://graphity.spacce/embed/" + id;
+   iframe.src = "https://graphity.space/embed/" + id;
    document.body.appendChild(iframe);
 };
