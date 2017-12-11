@@ -1,7 +1,11 @@
 class Embed::GraphsController < ApplicationController
-   layout false
-   def show
-   	  response.headers.delete "X-Frame-Options" #] = "ALLOWALL"
-      @graph = Graph.find params[:id]
-   end
+    before_filter :allow_iframe_requests
+    layout false
+	def show
+    	@graph = Graph.find params[:id]
+    end
+
+    def allow_iframe_requests
+    	response.headers.delete "X-Frame-Options" #] = "ALLOWALL"
+    end
 end
