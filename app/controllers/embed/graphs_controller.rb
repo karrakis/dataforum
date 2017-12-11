@@ -6,6 +6,7 @@ class Embed::GraphsController < ApplicationController
     end
 
     def allow_iframe_requests
-    	#response.headers.delete "X-Frame-Options" #] = "ALLOWALL"
+    	logger.debug(response.headers)
+    	response.headers.delete "X-Frame-Options" #] = "ALLOWALL"
     end
 end
