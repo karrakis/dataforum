@@ -138,7 +138,6 @@ GEM
     pg (0.21.0)
     puma (3.11.0)
     rack (2.0.3)
-    rack-cors (1.0.2)
     rack-protection (2.0.0)
       rack
     rack-test (0.6.3)
@@ -272,7 +271,6 @@ DEPENDENCIES
   paperclip
   pg
   puma (~> 3.0)
-  rack-cors
   rails (~> 5.0.2)
   rspec-rails
   sass-rails (~> 5.0)
