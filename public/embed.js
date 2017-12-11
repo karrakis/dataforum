@@ -5,7 +5,7 @@ window.onload = function() {
 
    //iFrame
    var iframe = document.createElement('iframe');
-   iframe.style.display = "inherit";
-   iframe.src = "/embed/" + id;
+   iframe.style.display = "none";
+   iframe.src = "https://graphity.space/embed/" + id;
    document.body.appendChild(iframe);
 };
