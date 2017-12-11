@@ -1,5 +1,5 @@
 class Embed::GraphsController < ApplicationController
-    before_filter :allow_iframe_requests
+    before_action :allow_iframe_requests
     layout false
 	def show
     	@graph = Graph.find params[:id]
