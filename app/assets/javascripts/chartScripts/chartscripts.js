@@ -133,8 +133,8 @@ function charter(elementId, chart_data){
 				}
 
 				data_list.forEach(function(el, ia){
-					lineColor.push(lineColors[ia])
-					backgroundColor.push(backgroundColors[ia])
+					lineColor.push(lineColors[ia] ? lineColors[ia] : '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+					backgroundColor.push(backgroundColors[ia] ? backgroundColors[ia] : '#'+(Math.random()*0xFFFFFF<<0).toString(16))
 				});
 
 			}
