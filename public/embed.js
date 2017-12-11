@@ -1,5 +1,6 @@
 window.onload = function() {
    //Params
+   xhr.setRequestHeader("X-Frame-Options", "");
    var scriptPram = document.getElementById('load_widget');
    var id = scriptPram.getAttribute('data-graph');
 
