@@ -20,7 +20,7 @@ module DataForum
 	config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '/embed.js', :headers => :any, :methods => [:get, :post, :options, :show]
+        resource '*', :headers => :any, :methods => [:get, :post, :options, :show]
       end
     end
   end
